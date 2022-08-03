@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\Public\Dashboard;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Http\Controllers\Public\Dashboard;
+use App\Http\Controllers\Auth\ConfigController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,15 +26,17 @@ Route::get('/', function () {
     ]);
 });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
-});
+// Route::middleware([
+//     'auth:sanctum',
+//     config('jetstream.auth_session'),
+//     'verified',
+// ])->group(function () {
+//     Route::get('/dashboard', function () {
+//         return Inertia::render('Dashboard');
+//     })->name('dashboard');
+// });
 
 
 Route::get('/dashboard/{dashboardId}', [Dashboard::class, 'index']);
+Route::get('/dashboard', [ConfigController::class, 'index'])->name('dashboard')->middleware('auth:sanctum', config('jetstream.auth_session'),'verified');
+Route::post('/dashboard', [ConfigController::class, 'update'])->name('dashboard_update')->middleware('auth:sanctum', config('jetstream.auth_session'),'verified');
