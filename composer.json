@@ -13,6 +13,7 @@
         "laravel/jetstream": "^2.10",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
+        "rakibdevs/openweather-laravel-api": "^1.7",
         "tightenco/ziggy": "^1.0",
         "vinkla/hashids": "^10.0"
     },

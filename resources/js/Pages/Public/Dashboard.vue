@@ -1,6 +1,6 @@
 <template>
     <div class="min-h-screen bg-grey bg-cover flex bg-center block md:fixed w-full  shadow-md" :style="{ backgroundImage: `url(${image})` }">
-        <div class="text-10xl text-white font-semibold mt-12 ml-20">{{time}}</div>
+        <div class="text-10xl text-white  mt-12 ml-20">{{time}}</div>
     </div>
 </template>
 
@@ -42,4 +42,4 @@ export default {
     }
 
 }
-</script>
+</script>  
