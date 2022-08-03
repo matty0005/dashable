@@ -41,6 +41,7 @@ class Dashboard extends Controller
         return Inertia::render('Public/Dashboard', [
             'image' => $images,
             'weather' => $weather_info,
+            'config' => $dashboard_data,
             'timeformat24h' => false
         ]);
 
