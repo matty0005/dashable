@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-screen bg-grey bg-cover flex bg-center block md:fixed w-full  shadow-md" :style="{ backgroundImage: `url(${image})` }">
+    <div class="min-h-screen bg-grey bg-cover flex bg-center block md:fixed w-full  shadow-md" :style="{ backgroundImage: `url(${displayImage})` }">
         <div class="flex flex-col">
             <div class="text-10xl text-white  mt-12 ml-20">{{time}}</div>
             <div class="flex-grow"></div>
@@ -31,22 +31,42 @@
 <script>
 export default {
     props: {
-        image: String,
+        images: Array,
         timeformat24h: Boolean,
         weather: Object,
         config: Object
     },
     data: ()=> {
         return {
-            time: ""
+            time: "",
+            displayImage: "",
+            displayTimer: 0,
+            displayIndex: 0
         }
     },
     mounted() {
         // this.clock()
+        this.pickImage()
         this.clock()
         setInterval(() => this.clock(), 1000)
     },
     methods: {
+        randomIntFromInterval(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min)
+        },
+        pickImage() {
+            var index = this.randomIntFromInterval(0, this.images.length - 1);
+
+            // Make sure the last image is not the same as the next
+            if (this.images.length > 1) {
+                while (index == this.displayIndex) {
+                    index = this.randomIntFromInterval(0, this.images.length - 1);
+                }
+            }
+
+            this.displayImage = this.images[index].url
+            console.log("Image", this.displayImage)
+        },
         clock() {
             var currentDate = new Date();
 
@@ -63,6 +83,14 @@ export default {
             }
 
             this.time = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}${this.config.time_include_seconds ? ':' + String(seconds).padStart(2, '0'):''} ${!this.timeformat24h ? amPm:''}`
+
+            this.displayTimer++
+
+            if (this.displayTimer == 120) {
+                this.displayTimer = 0
+                this.pickImage()
+            }
+
 
         }
     }

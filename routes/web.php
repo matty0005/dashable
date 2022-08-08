@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\Public\Dashboard;
 use App\Http\Controllers\Auth\ConfigController;
+use App\Http\Controllers\Auth\ImageUploaderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,7 +48,6 @@ Route::get('/customize', function () {
     return Inertia::render('Customize');
 })->name('customize')->middleware('auth:sanctum', config('jetstream.auth_session'),'verified');
 
-Route::get('/images', function () {
-    return Inertia::render('ImagePage');
-})->name('images')->middleware('auth:sanctum', config('jetstream.auth_session'),'verified');
 
+Route::get('/images', [ImageUploaderController::class, 'index'])->name('images')->middleware('auth:sanctum', config('jetstream.auth_session'),'verified');
+Route::post('/images/upload', [ImageUploaderController::class, 'store'])->name('images')->middleware('auth:sanctum', config('jetstream.auth_session'),'verified');

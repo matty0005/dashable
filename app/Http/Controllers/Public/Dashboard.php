@@ -18,7 +18,7 @@ class Dashboard extends Controller
 
         $images = DB::table('images')
             ->where('user_id', $user_id)
-            ->first()?->url;
+            ->get();        
 
         $dashboard_data = DB::table('dashboard')
             ->select('weather_city')
@@ -36,7 +36,7 @@ class Dashboard extends Controller
         } 
 
         return Inertia::render('Public/Dashboard', [
-            'image' => $images,
+            'images' => $images,
             'weather' => $weather_info,
             'config' => $dashboard_data,
             'timeformat24h' => false
