@@ -65,7 +65,6 @@ export default {
             }
 
             this.displayImage = this.images[index].url
-            console.log("Image", this.displayImage)
         },
         clock() {
             var currentDate = new Date();
