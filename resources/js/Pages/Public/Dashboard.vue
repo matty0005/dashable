@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-screen bg-grey bg-cover flex bg-center block md:fixed w-full  shadow-md" :style="{ backgroundImage: `url(${displayImage})` }">
+    <div class="min-h-screen bg-grey bg-cover flex bg-center block md:fixed w-full  shadow-md" :style="{ backgroundImage: `url(${shuffledImages[displayIndex % shuffledImages.length].url})` }">
         <div class="flex flex-col">
             <div class="text-10xl text-white  mt-12 ml-20">{{time}}</div>
             <div class="flex-grow"></div>
@@ -41,18 +41,40 @@ export default {
             time: "",
             displayImage: "",
             displayTimer: 0,
-            displayIndex: 0
+            displayIndex: 0,
+            shuffledImages: []
         }
     },
-    mounted() {
-        // this.clock()
-        this.pickImage()
+    beforeMount() {
+    
+        this.shuffledImages = this.shuffle(this.images)
         this.clock()
         setInterval(() => this.clock(), 1000)
     },
     methods: {
         randomIntFromInterval(min, max) {
             return Math.floor(Math.random() * (max - min + 1) + min)
+        },
+
+        shuffle(arrayIn) {
+            //https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+            
+            var array = JSON.parse(JSON.stringify(arrayIn))
+            let currentIndex = array.length,  randomIndex;
+
+            // While there remain elements to shuffle.
+            while (currentIndex != 0) {
+
+                // Pick a remaining element.
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+
+                // And swap it with the current element.
+                [array[currentIndex], array[randomIndex]] = [
+                array[randomIndex], array[currentIndex]];
+            }
+
+            return array;
         },
         pickImage() {
             var index = this.randomIntFromInterval(0, this.images.length - 1);
@@ -85,9 +107,14 @@ export default {
 
             this.displayTimer++
 
-            if (this.displayTimer == 120) {
+            if (this.displayTimer == 10) {
                 this.displayTimer = 0
-                this.pickImage()
+                this.displayIndex++
+
+                // Reset the number so it doesnt get too large
+                if (this.displayIndex > 10000) {
+                    this.displayIndex = 0
+                }
             }
 
 
