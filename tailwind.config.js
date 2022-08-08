@@ -24,6 +24,15 @@ module.exports = {
                 '8xl': '6rem',
                 '9xl': '7rem',
                 '10xl': '8rem',
+            },
+
+            colors: {
+                primary : '#C4B5FD',
+                primaryHover : '#C4B5FD',
+                primaryText : '#ffffff',
+                secondary : '#FCA5A5',
+                secondaryHover : '#FCA5A5',
+                secondaryText : '#ffffff',
             }
         },
     },

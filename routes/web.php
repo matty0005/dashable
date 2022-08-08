@@ -38,5 +38,16 @@ Route::get('/', function () {
 
 
 Route::get('/dashboard/{dashboardId}', [Dashboard::class, 'index']);
+
 Route::get('/dashboard', [ConfigController::class, 'index'])->name('dashboard')->middleware('auth:sanctum', config('jetstream.auth_session'),'verified');
 Route::post('/dashboard', [ConfigController::class, 'update'])->name('dashboard_update')->middleware('auth:sanctum', config('jetstream.auth_session'),'verified');
+
+//
+Route::get('/customize', function () {
+    return Inertia::render('Customize');
+})->name('customize')->middleware('auth:sanctum', config('jetstream.auth_session'),'verified');
+
+Route::get('/images', function () {
+    return Inertia::render('ImagePage');
+})->name('images')->middleware('auth:sanctum', config('jetstream.auth_session'),'verified');
+

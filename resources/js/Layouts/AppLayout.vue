@@ -34,12 +34,11 @@ const logout = () => {
 
         <JetBanner />
 
-        <div class="min-h-screen bg-gray-100">
-            <nav class="bg-white border-b border-gray-100">
+        <div class="min-h-screen w-full bg-fixed" style="background-color:hsla(0,0%,100%,1);background-image:radial-gradient(at 80% 100%, hsla(240,100%,90%,1) 0px, transparent 50%),radial-gradient(at 90% 48%, hsla(343,100%,87%,1) 0px, transparent 50%);">
+            <nav class="bg-white border-b bg-white">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
-                        <div class="flex">
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center">
                                 <Link :href="route('dashboard')">
@@ -48,12 +47,17 @@ const logout = () => {
                             </div>
 
                             <!-- Navigation Links -->
-                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <div class="hidden space-x-6 sm:-my-px sm:ml-10 sm:flex items-center">
                                 <JetNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </JetNavLink>
+                                <JetNavLink :href="'/customize'" :active="route().current('customize')">
+                                    Customize
+                                </JetNavLink>
+                                <JetNavLink :href="'/images'" :active="route().current('images')">
+                                    My Images
+                                </JetNavLink>
                             </div>
-                        </div>
 
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
                             <div class="ml-3 relative">
@@ -296,7 +300,7 @@ const logout = () => {
             </nav>
 
             <!-- Page Heading -->
-            <header v-if="$slots.header" class="bg-white shadow">
+            <header v-if="$slots.header" class="bg-white shadow-md">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     <slot name="header" />
                 </div>
@@ -306,6 +310,18 @@ const logout = () => {
             <main>
                 <slot />
             </main>
+            <footer class="w-full grid grid-cols-1 mt-auto">
+                <span class="relative self-center z-10 w-full h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent rounded"></span>
+                <div class="flex flex-row justify-between max-w-7xl w-full mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    <small class="text-gray-400">
+                        &copy; Dashable 2022
+                    </small>
+                    <div class="">
+                        Icons
+                    </div>
+                </div>
+            </footer>
         </div>
+        
     </div>
 </template>
