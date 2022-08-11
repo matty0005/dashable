@@ -17,11 +17,7 @@
                         Link to your dashboard: <a :href="$page.props.dashboard_link" target="_blank" class="ml-2 text-indigo-600">{{$page.props.dashboard_link}}</a>
                     </div>
 
-                    <Textfield class="mt-8" label="Weather city" v-model="city"/>
-
-                      <button type="button" @click="updateData" class="mt-8 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                        Save
-                    </button>
+                    
 
                 </div>
             </div>
