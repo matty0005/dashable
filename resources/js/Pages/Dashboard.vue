@@ -18,7 +18,7 @@
                     </div>
 
                     <div class="text-gray-600 text-xl mt-12">Live Preview:</div>
-                    <div class="bg-red-500 m-12 mb-12 my-4">
+                    <div class="m-12 mb-12 my-4 ">
                         <iframe id="scaled-frame" class="aspect-video w-full object-cover no-scrollbar" :src="$page.props.dashboard_link"/>
                     </div>
 
