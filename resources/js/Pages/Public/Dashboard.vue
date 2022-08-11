@@ -107,7 +107,7 @@ export default {
 
             this.displayTimer++
 
-            if (this.displayTimer == 10) {
+            if (this.displayTimer == 120) {
                 this.displayTimer = 0
                 this.displayIndex++
 
