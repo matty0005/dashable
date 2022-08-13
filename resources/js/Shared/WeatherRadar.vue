@@ -15,6 +15,10 @@
 export default {
     mounted() {
        
+       this.backgroundImage = `http://www.bom.gov.au/products/radar_transparencies/${this.radarId}.background.png`
+       this.backgroundLocation = `http://www.bom.gov.au/products/radar_transparencies/${this.radarId}.locations.png`
+       this.backgroundRange = `http://www.bom.gov.au/products/radar_transparencies/${this.radarId}.range.png`
+       this.backgroundTopography = `http://www.bom.gov.au/products/radar_transparencies/${this.radarId}.topography.png`
         let _t = this
         setInterval(() => {
             _t.setImage()
@@ -39,7 +43,8 @@ export default {
         }
     },
     props:{
-        images: Array
+        images: Array,
+        radarId: String
     },
     data: () => {
         return {

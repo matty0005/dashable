@@ -22,7 +22,7 @@ class Dashboard extends Controller
             ->get();        
 
         $dashboard_data = DB::table('dashboard')
-            ->select('weather_city')
+            ->select('weather_city', 'weather_radar_id')
             ->where('user_id', $user_id)
             ->first();
 
@@ -39,9 +39,7 @@ class Dashboard extends Controller
         $files = Storage::disk('ftp')->files("/anon/gen/radar/");
         $files = collect($files);   
 
-        $loopId = "IDR683";
-        // $loopId = "IDR664";
-        
+        $loopId = $dashboard_data->weather_radar_id;        
 
         $radarImages = $files->filter(function ($value, $key) use ($loopId) {
             return preg_match('/(?:' . $loopId . ').*(?:.png)$/',$value);

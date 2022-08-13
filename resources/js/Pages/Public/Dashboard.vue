@@ -1,7 +1,7 @@
 <template>
     <div class="relative min-h-screen bg-grey bg-cover flex bg-center block md:fixed w-full  shadow-md" :style="{ backgroundImage: `url(${shuffledImages[displayIndex % shuffledImages.length].url})` }">
     <div class="absolute right-[512px] bottom-[557px]">
-                <WeatherRadar :images="radarImages"/>
+                <WeatherRadar :images="radarImages" :radarId="config.weather_radar_id"/>
             </div> 
         <div class="flex flex-col">
             <div class="text-10xl text-white  mt-12 ml-20">{{time}}</div>
