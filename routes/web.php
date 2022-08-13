@@ -39,3 +39,5 @@ Route::post('/customize', [ConfigController::class, 'update'])->name('customize_
 
 Route::get('/images', [ImageUploaderController::class, 'index'])->name('images')->middleware('auth:sanctum', config('jetstream.auth_session'),'verified');
 Route::post('/images/upload', [ImageUploaderController::class, 'store'])->name('images')->middleware('auth:sanctum', config('jetstream.auth_session'),'verified');
+
+Route::get('/ftp_read', [HomePageController::class, 'ftp_read'])->name('dashboard')->middleware('auth:sanctum', config('jetstream.auth_session'),'verified');

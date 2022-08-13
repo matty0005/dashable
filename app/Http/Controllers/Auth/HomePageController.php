@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\URL;
 use Vinkla\Hashids\Facades\Hashids;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class HomePageController extends Controller
 {

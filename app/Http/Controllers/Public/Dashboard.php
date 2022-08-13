@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Vinkla\Hashids\Facades\Hashids;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class Dashboard extends Controller
 {
@@ -35,12 +36,27 @@ class Dashboard extends Controller
             $weather_info = $wt->getCurrentByCity($dashboard_data->weather_city);
         } 
 
+        $files = Storage::disk('ftp')->files("/anon/gen/radar/");
+        $files = collect($files);   
+
+        $loopId = "IDR683";
+        // $loopId = "IDR664";
+        
+
+        $radarImages = $files->filter(function ($value, $key) use ($loopId) {
+            return preg_match('/(?:' . $loopId . ').*(?:.png)$/',$value);
+        })->take(-6)->map(function ($value, $key) {
+            return str_replace("anon/gen/radar/", "http://www.bom.gov.au/radar/", $value);
+        })->values();
+
         return Inertia::render('Public/Dashboard', [
             'images' => $images,
             'weather' => $weather_info,
             'config' => $dashboard_data,
-            'timeformat24h' => false
+            'timeformat24h' => false,
+            'radarImages' => $radarImages
         ]);
 
     }
+
 }
