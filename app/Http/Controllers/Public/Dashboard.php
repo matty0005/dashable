@@ -44,15 +44,23 @@ class Dashboard extends Controller
         $radarImages = $files->filter(function ($value, $key) use ($loopId) {
             return preg_match('/(?:' . $loopId . ').*(?:.png)$/',$value);
         })->take(-6)->map(function ($value, $key) {
-            return str_replace("anon/gen/radar/", "http://www.bom.gov.au/radar/", $value);
+            return $value;
+            // return str_replace("anon/gen/radar/", "http://www.bom.gov.au/radar/", $value);
         })->values();
+
+        $imagesBase64 = array();
+
+        foreach ($radarImages as $radarImg) {
+            array_push($imagesBase64, 'data:image/png;base64,' . base64_encode(Storage::disk('ftp')->get($radarImg)));
+        }
+
 
         return Inertia::render('Public/Dashboard', [
             'images' => $images,
             'weather' => $weather_info,
             'config' => $dashboard_data,
             'timeformat24h' => false,
-            'radarImages' => $radarImages
+            'radarImages' => $imagesBase64
         ]);
 
     }
