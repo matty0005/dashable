@@ -15,10 +15,10 @@
 export default {
     mounted() {
        
-       this.backgroundImage = `http://www.bom.gov.au/products/radar_transparencies/${this.radarId}.background.png`
-       this.backgroundLocation = `http://www.bom.gov.au/products/radar_transparencies/${this.radarId}.locations.png`
-       this.backgroundRange = `http://www.bom.gov.au/products/radar_transparencies/${this.radarId}.range.png`
-       this.backgroundTopography = `http://www.bom.gov.au/products/radar_transparencies/${this.radarId}.topography.png`
+       this.backgroundImage = `https://cdn.mattgilpin.au/dashboards/content/radar/${this.radarId}.background.png`
+       this.backgroundLocation = `https://cdn.mattgilpin.au/dashboards/content/radar/${this.radarId}.locations.png`
+       this.backgroundRange = `https://cdn.mattgilpin.au/dashboards/content/radar/${this.radarId}.range.png`
+       this.backgroundTopography = `https://cdn.mattgilpin.au/dashboards/content/radar/${this.radarId}.topography.png`
         let _t = this
         setInterval(() => {
             _t.setImage()
@@ -49,11 +49,11 @@ export default {
     data: () => {
         return {
             backgroundRadar: 'http://www.bom.gov.au/radar/IDR664.T.202208131139.png',
-            backgroundLegend: 'http://www.bom.gov.au/products/radar_transparencies/IDR.legend.0.png',
-            backgroundImage: 'http://www.bom.gov.au/products/radar_transparencies/IDR664.background.png',
-            backgroundLocation: 'http://www.bom.gov.au/products/radar_transparencies/IDR664.locations.png',
-            backgroundRange: 'http://www.bom.gov.au/products/radar_transparencies/IDR664.range.png',
-            backgroundTopography: 'http://www.bom.gov.au/products/radar_transparencies/IDR664.topography.png',
+            backgroundLegend: 'https://cdn.mattgilpin.au/dashboards/content/radar/IDR.legend.0.png',
+            backgroundImage: 'https://cdn.mattgilpin.au/dashboards/content/radar/IDR664.background.png',
+            backgroundLocation: 'https://cdn.mattgilpin.au/dashboards/content/radar/IDR664.locations.png',
+            backgroundRange: 'https://cdn.mattgilpin.au/dashboards/content/radar/IDR664.range.png',
+            backgroundTopography: 'https://cdn.mattgilpin.au/dashboards/content/radar/IDR664.topography.png',
             imageIndex: 0
         }
     }

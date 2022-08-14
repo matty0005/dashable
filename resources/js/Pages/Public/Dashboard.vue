@@ -1,6 +1,6 @@
 <template>
     <div class="relative min-h-screen bg-grey bg-cover flex bg-center block md:fixed w-full  shadow-md" :style="{ backgroundImage: `url(${shuffledImages[displayIndex % shuffledImages.length].url})` }">
-    <div class="absolute right-[512px] bottom-[557px]">
+    <div class="absolute right-[512px] bottom-[512px]">
                 <WeatherRadar :images="radarImages" :radarId="config.weather_radar_id"/>
             </div> 
         <div class="flex flex-col">
